@@ -18,7 +18,7 @@ const navItems = [
   { href: "/", label: "Início", icon: Home },
   { href: "/anotacao/calendario", label: "Anotar", icon: PlusCircle },
   { href: "/ciclos", label: "Ciclos", icon: List },
-  { href: "/manual", label: "Manual", icon: BookOpen },
+  { href: "/compartilhamentos", label: "Compartilhar", icon: Share2 },
   { href: "/perfil", label: "Perfil", icon: User },
 ];
 

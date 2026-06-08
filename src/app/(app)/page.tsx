@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PlusCircle, BarChart2, History, BookOpen, User, List, FileDown } from "lucide-react";
+import { PlusCircle, BarChart2, History, BookOpen, User, List, ImageDown } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { Card } from "@/components/ui/Card";
 import { formatarData, calcularDiaCiclo } from "@/lib/mob/cycle";
@@ -55,7 +55,7 @@ export default async function HomePage() {
     { href: "/ciclos", label: "Meus Ciclos", icon: List },
     { href: "/manual", label: "Manual MOB", icon: BookOpen },
     { href: "/perfil", label: "Perfil", icon: User },
-    ...(cicloAtivo ? [{ href: `/grafico/${cicloAtivo.id}?exportar=true`, label: "Exportar PDF", icon: FileDown }] : []),
+    ...(cicloAtivo ? [{ href: `/grafico/${cicloAtivo.id}?exportar=true`, label: "Exportar Imagem", icon: ImageDown }] : []),
   ];
 
   return (
