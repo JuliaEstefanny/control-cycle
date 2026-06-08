@@ -23,9 +23,12 @@ const navItems = [
 ];
 
 const sidebarItems = [
-  ...navItems.slice(0, 3),
+  { href: "/", label: "Início", icon: Home },
+  { href: "/anotacao/calendario", label: "Anotar", icon: PlusCircle },
+  { href: "/ciclos", label: "Ciclos", icon: List },
   { href: "/compartilhamentos", label: "Compartilhamentos", icon: Share2 },
-  ...navItems.slice(3),
+  { href: "/manual", label: "Manual", icon: BookOpen },
+  { href: "/perfil", label: "Perfil", icon: User },
   { href: "/fale-conosco", label: "Fale conosco", icon: Mail },
 ];
 
