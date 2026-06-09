@@ -58,6 +58,10 @@ export function PerfilForm({ profile, userId }: PerfilFormProps) {
   const [tipoUsuario, setTipoUsuario] = useState<TipoUsuario | "">(profile?.tipo_usuario ?? "");
   const [salvando, setSalvando] = useState(false);
   const [mensagem, setMensagem] = useState("");
+  const [novaSenha, setNovaSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [salvandoSenha, setSalvandoSenha] = useState(false);
+  const [mensagemSenha, setMensagemSenha] = useState("");
 
   const pbiSalvo = (profile?.preferencias as Record<string, unknown>)?.pbi as PBI | undefined;
   const [pbiSensacao, setPbiSensacao] = useState(pbiSalvo?.sensacao ?? "");
@@ -130,6 +134,33 @@ export function PerfilForm({ profile, userId }: PerfilFormProps) {
       router.refresh();
     }
     setSalvandoPbi(false);
+  }
+
+  async function handleAlterarSenha(e: React.FormEvent) {
+    e.preventDefault();
+    setMensagemSenha("");
+
+    if (novaSenha.length < 6) {
+      setMensagemSenha("A senha deve ter pelo menos 6 caracteres.");
+      return;
+    }
+    if (novaSenha !== confirmarSenha) {
+      setMensagemSenha("As senhas não coincidem.");
+      return;
+    }
+
+    setSalvandoSenha(true);
+    const supabase = createClient();
+    const { error } = await supabase.auth.updateUser({ password: novaSenha });
+
+    if (error) {
+      setMensagemSenha("Erro ao alterar senha. Tente novamente.");
+    } else {
+      setMensagemSenha("Senha alterada com sucesso!");
+      setNovaSenha("");
+      setConfirmarSenha("");
+    }
+    setSalvandoSenha(false);
   }
 
   async function handleLogout() {
@@ -269,6 +300,39 @@ export function PerfilForm({ profile, userId }: PerfilFormProps) {
 
           <Button type="submit" loading={salvandoPbi}>
             Salvar PBI
+          </Button>
+        </form>
+      </SecaoColapsavel>
+
+      <SecaoColapsavel titulo="Alterar senha">
+        <form onSubmit={handleAlterarSenha} className="flex flex-col gap-4">
+          <Input
+            label="Nova senha"
+            type="password"
+            placeholder="Mínimo 6 caracteres"
+            value={novaSenha}
+            onChange={(e) => setNovaSenha(e.target.value)}
+            required
+          />
+          <Input
+            label="Confirmar nova senha"
+            type="password"
+            placeholder="Repita a senha"
+            value={confirmarSenha}
+            onChange={(e) => setConfirmarSenha(e.target.value)}
+            required
+          />
+
+          {mensagemSenha && (
+            <p className={`text-sm rounded-xl px-3 py-2 ${
+              mensagemSenha.includes("sucesso") ? "text-green-700 bg-green-50" : "text-red-500 bg-red-50"
+            }`}>
+              {mensagemSenha}
+            </p>
+          )}
+
+          <Button type="submit" loading={salvandoSenha}>
+            Alterar senha
           </Button>
         </form>
       </SecaoColapsavel>

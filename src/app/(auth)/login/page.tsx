@@ -52,14 +52,21 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <Input
-              label="Senha"
-              type="password"
-              placeholder="••••••••"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              required
-            />
+            <div className="flex flex-col gap-1">
+              <Input
+                label="Senha"
+                type="password"
+                placeholder="••••••••"
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)}
+                required
+              />
+              <div className="flex justify-end">
+                <Link href="/esqueci-senha" className="text-xs text-rose-400 hover:underline">
+                  Esqueci minha senha
+                </Link>
+              </div>
+            </div>
 
             {erro && (
               <p className="text-sm text-red-500 bg-red-50 rounded-lg px-3 py-2">{erro}</p>
