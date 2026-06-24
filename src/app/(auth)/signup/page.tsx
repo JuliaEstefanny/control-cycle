@@ -30,9 +30,13 @@ export default function SignupPage() {
     });
 
     if (error) {
-      setErro(error.message === "User already registered"
-        ? "Este e-mail já está cadastrado."
-        : "Erro ao criar conta. Tente novamente.");
+      if (error.message.includes("already registered") || error.message.includes("User already exists")) {
+        setErro("Este e-mail já está cadastrado.");
+      } else if (error.message.includes("Email")) {
+        setErro("E-mail inválido ou já cadastrado.");
+      } else {
+        setErro("Erro ao criar conta. Tente novamente.");
+      }
       setCarregando(false);
       return;
     }
