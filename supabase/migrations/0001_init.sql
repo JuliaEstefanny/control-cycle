@@ -102,11 +102,12 @@ create trigger notes_updated_at
 create or replace function public.handle_new_user()
 returns trigger language plpgsql security definer as $$
 begin
-  insert into public.profiles (id, email, nome)
+  insert into public.profiles (id, email, nome, tipo_acesso)
   values (
     new.id,
     new.email,
-    coalesce(new.raw_user_meta_data->>'nome', split_part(new.email, '@', 1))
+    coalesce(new.raw_user_meta_data->>'nome', split_part(new.email, '@', 1)),
+    'Usuario'
   );
   return new;
 end;

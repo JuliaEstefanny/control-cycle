@@ -2,6 +2,8 @@ export type CycleStatus = "ativo" | "encerrado" | "arquivado";
 
 export type TipoUsuario = "aluna" | "instrutora" | "convidada";
 
+export type TipoAcesso = "Usuario" | "Adm";
+
 export type ShareStatus = "pendente" | "aceito" | "recusado";
 
 export type MobSymbol =
@@ -33,6 +35,7 @@ export interface Profile {
   objetivo: string | null;
   data_nascimento: string | null;
   tipo_usuario: TipoUsuario | null;
+  tipo_acesso: TipoAcesso;
   preferencias: Record<string, unknown> | null;
   created_at: string;
   updated_at: string;
