@@ -33,12 +33,12 @@ export default function SignupPage() {
       setErro(error.message === "User already registered"
         ? "Este e-mail já está cadastrado."
         : "Erro ao criar conta. Tente novamente.");
-    } else {
-      router.push("/");
-      router.refresh();
+      setCarregando(false);
+      return;
     }
 
-    setCarregando(false);
+    router.push("/");
+    router.refresh();
   }
 
   return (
