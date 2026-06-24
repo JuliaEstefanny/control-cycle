@@ -13,6 +13,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { AdminNavLink } from "./AdminNavLink";
 
 const navItems = [
   { href: "/", label: "Início", icon: Home },
@@ -68,6 +69,8 @@ export function AppNav() {
             </Link>
           );
         })}
+
+        <AdminNavLink />
 
         <div className="mt-auto">
           <button
