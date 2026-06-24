@@ -138,6 +138,11 @@ export function NoteForm({
   async function onSubmit(valores: NoteFormValues) {
     setErroServidor("");
 
+    if (!valores.simbolo_mob) {
+      setErroServidor("Selecione um símbolo / selo MOB para salvar a anotação.");
+      return;
+    }
+
     const ciclo = encontrarCicloPorData(todosOsCiclos, valores.data);
 
     if (!ciclo) {
