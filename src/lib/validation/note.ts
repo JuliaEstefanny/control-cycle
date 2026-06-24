@@ -15,7 +15,7 @@ export const noteSchema = z.object({
   simbolo_mob: z
     .enum(["vermelho", "manchas", "verde", "amarelo", "branco", "R1", "R2", "R3", "1", "2", "3"])
     .nullable()
-    .optional(),
+    .refine((v) => v !== null && v !== undefined, { message: "Selecione um símbolo / selo MOB para salvar a anotação." }),
   regra_mob: z
     .enum(["Regra 1", "Regra 2", "Regra 3", "Regra do Ápice", "Não se aplica"])
     .nullable()

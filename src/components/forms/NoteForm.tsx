@@ -387,6 +387,7 @@ export function NoteForm({
           options={REGRA_MOB_OPTIONS as unknown as { value: string; label: string }[]}
           placeholder="Não informar"
           {...register("regra_mob")}
+          onChange={(e) => setValue("regra_mob", (e.target.value as NoteFormValues["regra_mob"]) || null)}
         />
         {regraSelecionada && REGRA_MOB_DESCRICOES[regraSelecionada] && (
           <p className="text-xs text-gray-400">

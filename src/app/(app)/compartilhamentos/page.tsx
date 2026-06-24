@@ -38,9 +38,10 @@ export default async function CompartilhamentosPage() {
     : { data: null };
   const perfisDestinatarios = (perfisDestinatariosRaw ?? []) as PerfilPublico[];
 
-  // Agrupa recebidos por owner_id
+  // Agrupa recebidos por owner_id — ignora recusados
   const remetentesMap = new Map<string, { id: string; nome: string; email: string; pendente: boolean; aceito: boolean }>();
   for (const share of recebidos ?? []) {
+    if (share.status === "recusado") continue;
     const p = perfisRemetentes.find((x: PerfilPublico) => x.id === share.owner_id);
     if (!p) continue;
     const atual = remetentesMap.get(share.owner_id) ?? { id: p.id, nome: p.nome, email: p.email, pendente: false, aceito: false };
@@ -49,9 +50,10 @@ export default async function CompartilhamentosPage() {
     remetentesMap.set(share.owner_id, atual);
   }
 
-  // Agrupa enviados por recipient_email
+  // Agrupa enviados por recipient_email — ignora recusados
   const destinatariosMap = new Map<string, { nome: string | null; email: string; pendente: boolean; aceito: boolean }>();
   for (const share of enviados ?? []) {
+    if (share.status === "recusado") continue;
     const p = perfisDestinatarios.find((x: PerfilPublico) => x.email === share.recipient_email) ?? null;
     const atual = destinatariosMap.get(share.recipient_email) ?? { nome: p?.nome ?? null, email: share.recipient_email, pendente: false, aceito: false };
     if (share.status === "pendente") atual.pendente = true;

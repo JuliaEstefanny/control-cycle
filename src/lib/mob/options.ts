@@ -16,6 +16,7 @@ export const APARENCIA_OPTIONS = [
   { value: "transparente", label: "Transparente" },
   { value: "elastico", label: "Elástico" },
   { value: "clara_ovo", label: "Clara de ovo" },
+  { value: "liquido_seminal", label: "Líquido seminal" },
   { value: "outro", label: "Outro" },
 ] as const;
 
