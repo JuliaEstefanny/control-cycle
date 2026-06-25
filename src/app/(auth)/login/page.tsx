@@ -88,10 +88,10 @@ export default function LoginPage() {
             <p className="text-xs text-center text-gray-400">
               Precisa de ajuda?{" "}
               <a
-                href="mailto:aitheotec.global@gmail.com"
+                href="mailto:controlcycle.global@gmail.com"
                 className="text-rose-400 hover:underline font-medium"
               >
-                aitheotec.global@gmail.com
+                controlcycle.global@gmail.com
               </a>
             </p>
           </div>

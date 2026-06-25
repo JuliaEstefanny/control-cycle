@@ -23,10 +23,10 @@ export default function FaleConoscoPage() {
                 Para dúvidas sobre o app, problemas técnicos ou questões sobre o Método Billings.
               </p>
               <a
-                href="mailto:aitheotec.global@gmail.com"
+                href="mailto:controlcycle.global@gmail.com"
                 className="text-rose-500 font-medium text-sm hover:underline mt-1"
               >
-                aitheotec.global@gmail.com
+                controlcycle.global@gmail.com
               </a>
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function FaleConoscoPage() {
                 <span className="font-medium text-gray-600">"Sugestão"</span>.
               </p>
               <a
-                href="mailto:aitheotec.global@gmail.com?subject=Sugest%C3%A3o%20-%20Control%20Cycle"
+                href="mailto:controlcycle.global@gmail.com?subject=Sugest%C3%A3o%20-%20Control%20Cycle"
                 className="text-rose-500 font-medium text-sm hover:underline mt-1"
               >
                 Enviar sugestão
